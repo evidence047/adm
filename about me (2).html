@@ -1,0 +1,78 @@
+<a href="index.html" target="about me.html">back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Info</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  }
+
+  .card {
+    background: #fff;
+    max-width: 700px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .card img { 
+    
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px; /* make it round: 50% */  
+  }
+
+  .card p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .card img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+</style>
+<script>
+  // Go back to previous page
+  function goBack() {
+    window.history.back();
+  }
+</script>
+</head>
+<body>
+  <!-- Personal card -->
+  <div class="card">
+    <!-- Place your picture here -->
+    <img src="kevin.jpg" alt="My Photo">
+    <!-- Your paragraph here -->
+    <p>
+      My name is Kevin Okari, and I come from Nairobi, Kenya. I have a strong passion for technology and creativity, which is why I enjoy spending my free time playing video games and doing some coding. Gaming allows me to explore new worlds and ideas, while coding helps me build my own projects and improve my skills. Together, these hobbies shape who I am and inspire me to keep learning and creating.
+    </p>
+  </div>
+
+</body>
+</html

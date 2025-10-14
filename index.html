@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta.arset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login & Registration</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 320px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+  }
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #0056b3;
+  }
+  .switch {
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Login form -->
+    <div id="loginFormContainer">
+      <h1>Student Login</h1>
+      <div class="error" id="loginError"></div>
+      <form id="loginForm">
+        <label for="loginStudentName">Student Name</label>
+        <input type="text" id="loginStudentName" name="loginStudentName" placeholder="Enter student name" required>
+
+        <label for="loginAdmissionNo">Admission No</label>
+        <input type="text" id="loginAdmissionNo" name="loginAdmissionNo" placeholder="Enter admission number" required>
+
+        <button type="submit">Login</button>
+      </form>
+      <div class="switch" onclick="showRegister()">New student? Register here</div>
+    </div>
+
+    <!-- Registration form -->
+    <div id="registerFormContainer" style="display:none;">
+      <h1>Student Registration</h1>
+      <div class="error" id="registerError"></div>
+      <form id="registerForm">
+        <label for="regStudentName">Student Name</label>
+        <input type="text" id="regStudentName" name="regStudentName" placeholder="Enter student name" required>
+
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" name="regEmail" placeholder="Enter your email" required>
+
+        <label for="regAdmissionNo">Admission No</label>
+        <input type="text" id="regAdmissionNo" name="regAdmissionNo" placeholder="Create admission number" required>
+
+        <button type="submit">Register</button>
+      </form>
+    
+    </div>
+  </div>
+
+<script>
+  // Dummy storage for registered students (client-side only)
+  const students = [];
+
+  // Show Register form
+  function showRegister(){
+    document.getElementById('loginFormContainer').style.display = 'none';
+    document.getElementById('registerFormContainer').style.display = 'block';
+  }
+
+  // Show Login form
+  function showLogin(){
+    document.getElementById('registerFormContainer').style.display = 'none';
+    document.getElementById('loginFormContainer').style.display = 'block';
+  }
+
+  // Registration form handler
+  document.getElementById('registerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const studentName = document.getElementById('regStudentName').value;
+    const email = document.getElementById('regEmail').value;
+    const admissionNo = document.getElementById('regAdmissionNo').value;
+
+    // Check if student already exists
+    const existingStudent = students.find(st => st.studentName === studentName);
+    if(existingStudent){
+      document.getElementById('registerError').textContent = 'Student already registered!';
+      return;
+    }
+
+    // Save new student
+    students.push({studentName, email, admissionNo});
+    alert('Registration successful! You can now login.');
+    document.getElementById('registerForm').reset();
+    showLogin();
+  });
+
+  // Login form handler
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const studentName = document.getElementById('loginStudentName').value;
+    const admissionNo = document.getElementById('loginAdmissionNo').value;
+
+    // Check student credentials
+    const student = students.find(st => st.studentName === studentName && st.admissionNo === admissionNo);
+    if(student){
+      // Go to home page (dummy)
+      window.location.href ="homepage.html"
+    } else {
+      document.getElementById('loginError').textContent = 'Invalid student name or admission no!';
+    }
+  });
+</script>
+</body>
+<h6>Hello! My name is Kevin Okari. I’m a student at jaramogi oginga odinga university
+   and I’m passionate about technology and learning how to build websites and apps. 
+   This project is part of my studies in computer science. My goal is to create simple,
+    user-friendly tools that can help students access information easily.</h6>
+
+</html>
+<a href="about me.html" target="about me.html">click here to know more</a>
+
+
