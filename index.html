@@ -1,72 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta.arset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Login & Registration</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f6fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  .container {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 320px;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  label {
-    display: block;
-    margin-bottom: 6px;
-    color: #555;
-  }
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  button:hover {
-    background: #0056b3;
-  }
-  .switch {
-    text-align: center;
-    margin-top: 10px;
-    color: #007bff;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .error {
-    color: red;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login & Registration</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <div class="container">
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Main container -->
+  <div class="container" id="mainContainer">
     <!-- Login form -->
     <div id="loginFormContainer">
       <h1>Student Login</h1>
@@ -99,70 +46,97 @@
 
         <button type="submit">Register</button>
       </form>
-    
+      <div class="switch" onclick="showLogin()">Already registered? Login here</div>
+    </div>
+
+    <!-- Personal Details Button -->
+    <div style="text-align: center; margin-top: 20px;">
+      <button id="personalBtn">View Personal Details</button>
+      <div id="personalInfo" style="display:none; margin-top:15px; text-align:left; background:#f0f8ff; padding:15px; border-radius:10px; color:#333; max-width:360px; margin-left:auto; margin-right:auto;">
+        <p><strong>Name:</strong> Kevin</p>
+        <p><strong>University:</strong> Jaramogi Oginga Odinga University</p>
+        <p><strong>Passion:</strong> Technology and building websites/apps</p>
+        <p><strong>Goal:</strong> Create simple, user-friendly tools for students</p>
+      </div>
     </div>
   </div>
 
-<script>
-  // Dummy storage for registered students (client-side only)
-  const students = [];
+  <script>
+    // Dummy storage for registered students (client-side only)
+    const students = [];
 
-  // Show Register form
-  function showRegister(){
-    document.getElementById('loginFormContainer').style.display = 'none';
-    document.getElementById('registerFormContainer').style.display = 'block';
-  }
-
-  // Show Login form
-  function showLogin(){
-    document.getElementById('registerFormContainer').style.display = 'none';
-    document.getElementById('loginFormContainer').style.display = 'block';
-  }
-
-  // Registration form handler
-  document.getElementById('registerForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const studentName = document.getElementById('regStudentName').value;
-    const email = document.getElementById('regEmail').value;
-    const admissionNo = document.getElementById('regAdmissionNo').value;
-
-    // Check if student already exists
-    const existingStudent = students.find(st => st.studentName === studentName);
-    if(existingStudent){
-      document.getElementById('registerError').textContent = 'Student already registered!';
-      return;
+    // Show Register form
+    function showRegister(){
+      document.getElementById('loginFormContainer').style.display = 'none';
+      document.getElementById('registerFormContainer').style.display = 'block';
     }
 
-    // Save new student
-    students.push({studentName, email, admissionNo});
-    alert('Registration successful! You can now login.');
-    document.getElementById('registerForm').reset();
-    showLogin();
-  });
-
-  // Login form handler
-  document.getElementById('loginForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const studentName = document.getElementById('loginStudentName').value;
-    const admissionNo = document.getElementById('loginAdmissionNo').value;
-
-    // Check student credentials
-    const student = students.find(st => st.studentName === studentName && st.admissionNo === admissionNo);
-    if(student){
-      // Go to home page (dummy)
-      window.location.href ="homepage.html"
-    } else {
-      document.getElementById('loginError').textContent = 'Invalid student name or admission no!';
+    // Show Login form
+    function showLogin(){
+      document.getElementById('registerFormContainer').style.display = 'none';
+      document.getElementById('loginFormContainer').style.display = 'block';
     }
-  });
-</script>
+
+    // Registration form handler
+    document.getElementById('registerForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const studentName = document.getElementById('regStudentName').value;
+      const email = document.getElementById('regEmail').value;
+      const admissionNo = document.getElementById('regAdmissionNo').value;
+
+      const existingStudent = students.find(st => st.studentName === studentName);
+      if(existingStudent){
+        document.getElementById('registerError').textContent = 'Student already registered!';
+        return;
+      }
+
+      students.push({studentName, email, admissionNo});
+      alert('Registration successful! You can now login.');
+      document.getElementById('registerForm').reset();
+      showLogin();
+    });
+
+    // Login form handler
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const studentName = document.getElementById('loginStudentName').value;
+      const admissionNo = document.getElementById('loginAdmissionNo').value;
+
+      const student = students.find(st => st.studentName === studentName && st.admissionNo === admissionNo);
+      if(student){
+        window.location.href = "homepage.html";
+      } else {
+        document.getElementById('loginError').textContent = 'Invalid student name or admission no!';
+      }
+    });
+
+    // Preloader functionality with 4-second delay
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      const container = document.getElementById('mainContainer');
+
+      setTimeout(() => {
+        preloader.style.opacity = 0;
+        setTimeout(() => {
+          preloader.style.display = 'none';
+          container.classList.add('show'); // fade-in main container
+        }, 500); // fade-out duration
+      }, 2000); // 4 seconds preloader
+    });
+
+    // Show/hide personal details
+    const personalBtn = document.getElementById('personalBtn');
+    const personalInfo = document.getElementById('personalInfo');
+
+    personalBtn.addEventListener('click', () => {
+      if(personalInfo.style.display === "none"){
+        personalInfo.style.display = "block";
+        personalBtn.textContent = "Hide Personal Details";
+      } else {
+        personalInfo.style.display = "none";
+        personalBtn.textContent = "View Personal Details";
+      }
+    });
+  </script>
 </body>
-<h6>Hello! My name is Kevin . I’m a student at jaramogi oginga odinga university
-   and I’m passionate about technology and learning how to build websites and apps. 
-   This project is part of my studies in computer science. My goal is to create simple,
-    user-friendly tools that can help students access information easily.</h6>
-
 </html>
-<a href="about me.html" target="about me.html">click here to know more</a>
-
-
