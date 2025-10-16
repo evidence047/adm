@@ -1,0 +1,90 @@
+/* General body styling */
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Logout card */
+.logout-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+.logout-card h1 {
+  margin-bottom: 15px;
+  color: #003366;
+}
+
+.logout-card p {
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#confirmBtn {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+#confirmBtn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#cancelBtn {
+  background-color: #fff;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+}
+
+#cancelBtn:hover {
+  background-color: #f0f8ff;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .logout-card {
+    padding: 20px 25px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

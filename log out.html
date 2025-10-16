@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logout Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    .message {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    a {
-      text-decoration: none;
-      color: white;
-      background-color: #007BFF;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-    a:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="logout.css">
 </head>
 <body>
-  <div class="message">You have successfully logged out.</div>
-  <a href="index.html">Go back to Login</a>
+  <div class="logout-container">
+    <div class="logout-card">
+      <h1>Logout</h1>
+      <p>Are you sure you want to log out?</p>
+      <div class="buttons">
+        <button id="confirmBtn">Yes, Log Out</button>
+        <button id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    confirmBtn.addEventListener('click', () => {
+      // Redirect to login page after logout
+      window.location.href = "index.html";
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      alert("Logout cancelled!");
+      // Optional: redirect back to homepage/dashboard
+      window.location.href = "homepage.html";
+    });
+  </script>
 </body>
 </html>

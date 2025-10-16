@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>School Admission / Registration Form</title>
+  <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+  <a href="homepage.html" class="back-btn">← Back</a>
+
+  <div class="container">
+    <div class="card">
+      <h1>Student Registration / Admission Form</h1>
+      <p class="lead">Fill the details below carefully. Fields marked with * are required.</p>
+
+      <form id="regForm" novalidate>
+        <!-- Student details -->
+        <div>
+          <label for="studentName">Student full name *</label>
+          <input id="studentName" name="studentName" type="text" placeholder="e.g. Jane Doe" required />
+          <div class="error" data-for="studentName"></div>
+        </div>
+
+        <div>
+          <label for="admNumber">Admission number (ADM No.) *</label>
+          <input id="admNumber" name="admNumber" type="text" placeholder="e.g. ADM2025-001" pattern="^[A-Za-z0-9\-]+$" required />
+          <div class="error" data-for="admNumber"></div>
+        </div>
+
+        <div>
+          <label for="admissionDate">Date of admission *</label>
+          <input id="admissionDate" name="admissionDate" type="date" required />
+          <div class="error" data-for="admissionDate"></div>
+        </div>
+
+        <div>
+          <label for="classApplied">Class / Grade applied for *</label>
+          <select id="classApplied" name="classApplied" required>
+            <option value="">-- Select class --</option>
+            <option>Grade 1</option>
+            <option>Grade 2</option>
+            <option>Grade 3</option>
+            <option>Form 1</option>
+            <option>Form 2</option>
+          </select>
+          <div class="error" data-for="classApplied"></div>
+        </div>
+
+        <!-- Parent / Guardian details -->
+        <div class="full">
+          <label for="parentName">Parent / Guardian name *</label>
+          <input id="parentName" name="parentName" type="text" placeholder="e.g. John Doe" required />
+          <div class="error" data-for="parentName"></div>
+        </div>
+
+        <div>
+          <label for="relationship">Relationship to student *</label>
+          <select id="relationship" name="relationship" required>
+            <option value="">-- Select relationship --</option>
+            <option>Mother</option>
+            <option>Father</option>
+            <option>Guardian</option>
+            <option>Other</option>
+          </select>
+          <div class="error" data-for="relationship"></div>
+        </div>
+
+        <div>
+          <label for="parentPhone">Parent / Guardian phone *</label>
+          <input id="parentPhone" name="parentPhone" type="tel" placeholder="e.g. +254712345678" pattern="^\+?[0-9\s\-]{6,20}$" required />
+          <div class="error" data-for="parentPhone"></div>
+        </div>
+
+        <!-- Academic performance questions -->
+        <div class="full">
+          <label>How would you rate the student's previous academic performance? *</label>
+          <select id="performance" name="performance" required>
+            <option value="">-- Select performance level --</option>
+            <option>Outstanding / High</option>
+            <option>Above Average</option>
+            <option>Average</option>
+            <option>Below Average</option>
+            <option>Poor</option>
+          </select>
+          <div class="error" data-for="performance"></div>
+        </div>
+
+        <div>
+          <label for="lastTermMarks">Last term marks (optional)</label>
+          <input id="lastTermMarks" name="lastTermMarks" type="text" placeholder="e.g. 78% or A-" />
+        </div>
+
+        <div>
+          <label for="specialNeeds">Any special needs or medical conditions (optional)</label>
+          <input id="specialNeeds" name="specialNeeds" type="text" placeholder="e.g. asthma, dyslexia" />
+        </div>
+
+        <div class="full">
+          <label for="notes">Additional notes (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Add any background info, previous schools, behaviour notes..."></textarea>
+        </div>
+
+        <div class="actions full">
+          <button type="submit">Submit registration</button>
+          <button type="button" class="secondary" id="resetBtn">Reset form</button>
+          <div style="margin-left:auto" class="note">This is a client-side demo only.</div>
+        </div>
+
+      </form>
+
+      <div id="result" class="summary" style="display:none" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script src="form.js"></script>
+</body>
+</html>
